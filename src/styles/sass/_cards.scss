@@ -1,0 +1,57 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: $ligth;
+  padding: 1rem 1.5rem;
+  border-radius: 2.25rem;
+  box-shadow: 0 0 5px 3px $secundary-10;
+  &__image {
+    align-self: center;
+    width: 5rem;
+    margin-bottom: 0.5rem;
+  }
+  &__name {
+    font-size: 1rem;
+  }
+  &__description {
+    font-weight: 300;
+    font-size: 0.75rem;
+    color: $secundary-20;
+    margin-bottom: 4rem;
+  }
+  &__button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 11.5rem;
+    padding: 0.5rem 0 1rem;
+    border-radius: 1rem;
+    background-color: $primary-10;
+    border: none;
+    outline: none;
+    color: $ligth;
+    cursor: pointer;
+    border: 2px solid $primary-10;
+    transition: all 0.3s ease;
+    &:hover {
+      color: $primary-10;
+      background-color: $ligth;
+      & > span {
+        background-color: $primary-10;
+        color: $ligth;
+      }
+    }
+  }
+  &__price {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  &__add {
+    font-size: 12px;
+    background-color: $primary-50;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+  }
+}

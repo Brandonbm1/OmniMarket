@@ -1,0 +1,51 @@
+.navbar {
+  background-color: $primary-50;
+  padding: 0 1rem;
+  &__list {
+    height: 8.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+  }
+  &__item {
+    position: relative;
+    font-size: 2.5rem;
+    color: $ligth;
+    &-link {
+      text-decoration: none;
+      &:visited {
+        color: unset;
+      }
+    }
+  }
+  &__icon {
+    height: 3.5rem;
+    width: 3.5rem;
+    border: 3px solid $ligth;
+    border-radius: 50%;
+    background-color: $ligth;
+    color: $primary-50;
+    cursor: pointer;
+    transition: 0.3s ease all;
+    &:hover {
+      background-color: $primary-50;
+      color: $ligth;
+    }
+
+    &-item {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &__logo {
+    width: 70%;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 5px;
+  }
+}

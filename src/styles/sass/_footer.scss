@@ -1,0 +1,20 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 1.5rem 0;
+  background-color: $secundary-10;
+  &__social {
+    font-size: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: end;
+    & > svg {
+      cursor: pointer;
+      transition: 0.1s ease all;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

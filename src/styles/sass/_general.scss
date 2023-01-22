@@ -1,0 +1,21 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Unbounded", cursive;
+}
+body {
+  background-color: $background;
+}
+
+.container {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+}
+.pages {
+  margin-bottom: 6rem;
+}

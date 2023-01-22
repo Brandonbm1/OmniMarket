@@ -1,0 +1,43 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  &__header {
+    position: relative;
+    margin: 1rem 0;
+    align-self: center;
+    font-size: 20px;
+  }
+  &__searcher {
+    padding: 0.75rem 0.75rem 0.75rem 3rem;
+    width: 420px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 1px solid $secundary-10;
+    outline: none;
+    box-shadow: 0 0 10px 2px #c5c5c5b0;
+    transition: all 0.3s ease;
+    &::placeholder {
+      color: $secundary-20;
+    }
+    &:focus {
+      box-shadow: 0 0 4px 2px $primary-10;
+    }
+    &-icon {
+      color: $secundary-20;
+      position: absolute;
+      left: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: text;
+    }
+  }
+  &__cards {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 11.5rem);
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+}
