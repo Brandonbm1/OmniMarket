@@ -1,0 +1,17 @@
+.button {
+  background-color: $primary-10;
+  border-radius: 0.625rem;
+  color: $ligth;
+  font-family: "Roboto Mono", monospace;
+  aspect-ratio: 1;
+  cursor: pointer;
+  border: none;
+  &.disable {
+    background-color: $secundary-10;
+    color: $dark;
+    cursor: auto;
+  }
+  &.changeQuantity {
+    font-weight: 400;
+  }
+}

@@ -10,8 +10,23 @@
   }
   &__item {
     cursor: pointer;
+    &-link {
+      text-decoration: none;
+      color: $background;
+      &:visited {
+        color: unset;
+      }
+    }
     &:hover {
       color: $ligth;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .subNavbar {
+    &__list {
+      font-size: 1rem;
     }
   }
 }

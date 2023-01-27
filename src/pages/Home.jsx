@@ -1,32 +1,22 @@
-import { BsSearch } from "react-icons/bs";
 import SubNavbar from "../components/SubNavbar";
-import { data } from "../assets/Data";
-import Card from "../components/Card";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Products from "../components/Products";
+import Layout from "../components/Layout";
+const categories = [
+  "Cereals",
+  "Drinks",
+  "Fruits and Vegetables",
+  "Snacks",
+  "Alcohol",
+];
 
 const Home = () => {
   return (
     <div className="home">
-      <SubNavbar />
-
-      <section className="home__header">
-        <input
-          className="home__searcher"
-          type="text"
-          placeholder="Search"
-          id="searcher"
-        />
-        <label htmlFor="searcher" className="home__searcher-icon">
-          <BsSearch className="home__searcher-icon" />
-        </label>
-      </section>
-      <div className="container">
-        <section className="home__cards">
-          {data &&
-            data.map((product) => {
-              return <Card product={product} key={product.id} />;
-            })}
-        </section>
-      </div>
+      <Layout page="home">
+        <SubNavbar categories={categories} />
+        <Products />
+      </Layout>
     </div>
   );
 };

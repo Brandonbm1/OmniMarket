@@ -6,9 +6,9 @@ import PageRoutes from "./routes/PageRoutes";
 const App = () => {
   return (
     <div className="App">
-      <Navbar />
+      {/* <Navbar /> */}
       <PageRoutes />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

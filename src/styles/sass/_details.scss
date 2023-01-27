@@ -1,0 +1,94 @@
+.details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  margin-top: 1rem;
+  padding: 2rem 0;
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__image {
+    width: 15rem;
+    border-radius: 15px;
+  }
+  &__price {
+    margin-top: 0.5rem;
+    display: inline-flex;
+    font-size: 32px;
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    &-name {
+      font-size: 2rem;
+      line-height: 3rem;
+      font-weight: 400;
+    }
+    &-subtitle {
+      font-size: 1.25rem;
+      line-height: 3rem;
+      font-weight: 300;
+    }
+    &-description {
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    &-buttons {
+      margin-top: auto;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    &-button {
+      height: 3rem;
+      // width: 3rem;
+      &.changeQuantity {
+        width: 3rem;
+        font-size: 2rem;
+      }
+      &.addToCart {
+        font-size: 1rem;
+        margin-left: auto;
+        padding: 0 0.5rem;
+      }
+    }
+    &-quantity {
+      font-size: 1.5rem;
+      width: 2rem;
+      text-align: center;
+    }
+    &-fav {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      right: 1rem;
+      background-color: $secundary-10;
+      border-radius: 50%;
+      color: $ligth;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease all;
+      &.fav {
+        background-color: $danger-10;
+        border: 2px solid $danger-50;
+      }
+      &:hover {
+        background-color: $danger-10;
+        border: 2px solid $danger-50;
+      }
+      &-icon {
+        height: 24px;
+        width: 24px;
+        margin-left: 0.125rem;
+        margin-top: 0.125rem;
+      }
+    }
+  }
+}
