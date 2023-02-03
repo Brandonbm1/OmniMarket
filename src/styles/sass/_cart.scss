@@ -5,6 +5,11 @@
   flex-wrap: wrap;
   justify-content: space-around;
   min-height: 24.375rem;
+  pointer-events: all;
+  &.disable {
+    filter: blur(2px);
+    pointer-events: none;
+  }
   &__products {
     max-width: 38rem;
     width: 100%;

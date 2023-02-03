@@ -1,0 +1,79 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $ligth;
+  padding: 4rem 1rem 2rem;
+  box-shadow: 0 0 20px 2px #3d3d3d;
+
+  &__header {
+    position: relative;
+    & span {
+      position: absolute;
+      font-size: 0.75rem;
+      top: -2.5rem;
+    }
+    & svg {
+      position: absolute;
+      font-size: 0.75rem;
+      top: -2.5rem;
+      right: 0;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      color: $danger-50;
+      background-color: transparent;
+      border: none;
+      outline: none;
+
+      cursor: pointer;
+      &:hover {
+        color: $danger-10;
+      }
+    }
+  }
+  &__main {
+    max-width: 300px;
+    height: 100%;
+    & p {
+      text-align: center;
+      font-size: 24px;
+      & b {
+        color: $primary-25;
+      }
+    }
+  }
+  &__footer {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  &__button {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    color: $ligth;
+    font-weight: 600;
+    &:hover {
+      transform: scale(1.1);
+    }
+    &-delete {
+      background-color: $danger-50;
+      &:hover {
+        background-color: $danger-10;
+      }
+    }
+    &-cancel {
+      background-color: $secundary-20;
+      &:hover {
+        background-color: $secundary-10;
+        color: $dark;
+      }
+    }
+  }
+}

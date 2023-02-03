@@ -2,12 +2,18 @@ import { useParams } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { data } from "../assets/Data";
 import Card from "../components/Card";
-import { useState } from "react";
+import { useCartContext } from "../context/CartContext";
+import { actionsCartReducer } from "../helpers/actionsCartReducer";
 
 const Products = () => {
   const { categorie } = useParams();
-  const [toRender, setToRender] = useState(data);
-
+  const { dispatch } = useCartContext();
+  const handle = (product) => {
+    dispatch({
+      type: actionsCartReducer.addNewProduct,
+      product,
+    });
+  };
   return (
     <>
       <section className="home__header">
@@ -26,7 +32,9 @@ const Products = () => {
           {data &&
             data.map((product) => {
               if (product.categorie.toLowerCase() == categorie.toLowerCase()) {
-                return <Card product={product} key={product.id} />;
+                return (
+                  <Card product={product} key={product.id} handle={handle} />
+                );
               }
             })}
         </section>

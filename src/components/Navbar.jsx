@@ -1,7 +1,9 @@
 import { BsFillPersonFill, BsCart4, BsArrowLeft } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/Logo.png";
+import { useCartContext } from "../context/CartContext";
 const Navbar = ({ page }) => {
+  const { cart } = useCartContext();
   return (
     <nav className={`navbar`}>
       <div className="container">
@@ -24,7 +26,7 @@ const Navbar = ({ page }) => {
           </li>
           <li
             className={`navbar__item navbar__item-${page} navbar__icon`}
-            total-products={3}
+            total-products={cart?.cart ? cart.cart?.length : 0}
           >
             <NavLink
               to="/cart"

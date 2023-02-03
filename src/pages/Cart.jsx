@@ -1,28 +1,32 @@
-import Layout from "../components/Layout";
-import { data } from "../assets/Data";
 import { useEffect, useState } from "react";
-import { FaRegSadCry } from "react-icons/fa";
 import CartCard from "../components/CartCard";
+import { Link } from "react-router-dom";
+import { useModal } from "../hooks/useModal";
+import { FaRegSadCry } from "react-icons/fa";
 import { BsArrowLeft } from "react-icons/bs";
 import { BiCool } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { AiFillCloseCircle } from "react-icons/ai";
+import Navbar from "../components/Navbar";
+import { useCartContext } from "../context/CartContext";
+import { actionsCartReducer } from "../helpers/actionsCartReducer";
 
 const Cart = () => {
-  const [cartProducts, setCartProducts] = useState(data.slice(0, 4));
-  const [parcialTotal, setParcialTotal] = useState(0);
-  const [subTotal, setSubTotal] = useState(0);
+  const { cart, subTotal, dispatch } = useCartContext();
+  const { isModalOpen, handleModal } = useModal("#modal-cart");
   const [total, setTotal] = useState(0);
   const tax = 1;
   const [deliverPrice, setDeliverPrice] = useState(0);
   const [typeDeliver, setTypeDeliver] = useState("delivery");
   const [typeTip, setTypeTip] = useState("noTip");
 
+  const [modalProduct, setModalProduct] = useState(null);
+
   const deleteProduct = (productToDelete) => {
-    setCartProducts((prevState) =>
-      prevState.filter((product) =>
-        product.name !== productToDelete.name ? product : null
-      )
-    );
+    dispatch({
+      type: actionsCartReducer.deleteProduct,
+      product: productToDelete,
+    });
+    handleModal(false);
   };
 
   const handleDelivery = (e) => {
@@ -30,6 +34,11 @@ const Cart = () => {
   };
   const handleTips = (e) => {
     setTypeTip(e.target.value);
+  };
+
+  const openModal = (product, option) => {
+    product ? setModalProduct(product) : setModalProduct(null);
+    handleModal(option);
   };
 
   const changeTotal = () => {
@@ -42,29 +51,29 @@ const Cart = () => {
       setDeliverPrice(0);
     }
 
-    const aux = cartProducts?.reduce((acc, product) => {
-      return acc + product.price;
-    }, 0);
-    setParcialTotal(aux + subTotal);
-    setTotal(parcialTotal + tax + deliverPrice + parcialTip);
+    setTotal(subTotal + tax + deliverPrice + parcialTip);
   };
 
   useEffect(() => {
     changeTotal();
   });
   return (
-    <Layout page="details">
+    <>
+      <Navbar page="details" />
       <div className="container">
         <section className="cart">
-          {cartProducts.length > 0 ? (
+          {cart?.cart?.length > 0 ? (
             <aside className="cart__products">
-              {cartProducts.map((product) => {
+              {cart.cart.map(({ product, quantity }, index) => {
                 return (
                   <CartCard
                     product={product}
-                    key={product.id}
-                    setSubTotal={setSubTotal}
+                    quantity={quantity}
+                    key={index}
+                    // setSubTotal={setSubTotal}
                     deleteProduct={deleteProduct}
+                    handleModal={handleModal}
+                    openModal={openModal}
                   />
                 );
               })}
@@ -122,7 +131,9 @@ const Cart = () => {
                 <div className="cart__prices-main-container">
                   <section className="cart__prices-details">
                     <p className="cart__prices-tag">Subtotal:</p>
-                    <p className="cart__prices-tag">${parcialTotal}</p>
+                    <p className="cart__prices-tag">
+                      ${subTotal ? subTotal : 0}
+                    </p>
                   </section>
                   <section className="cart__prices-details">
                     <p className="cart__prices-tag">Tax:</p>
@@ -195,9 +206,9 @@ const Cart = () => {
                 </section>
                 <button
                   className={`cart__prices-button ${
-                    cartProducts.length > 0 ? "" : "disabled"
+                    cart?.cart?.length > 0 ? "" : "disabled"
                   }`}
-                  disabled={cartProducts.length > 0 ? false : true}
+                  disabled={cart?.cart?.length > 0 ? false : true}
                 >
                   PROCEED TO CHECKOUT
                 </button>
@@ -206,7 +217,36 @@ const Cart = () => {
           </summary>
         </section>
       </div>
-    </Layout>
+
+      {isModalOpen && (
+        <section className="modal cart__modal" id="modal-cart">
+          <header className="modal__header">
+            <span>¿Eliminar?</span>
+
+            <AiFillCloseCircle onClick={() => handleModal(false)} />
+          </header>
+          <main className="modal__main">
+            <p>
+              ¿Deseas eliminar <b>{modalProduct?.name}</b>?
+            </p>
+          </main>
+          <footer className="modal__footer">
+            <button
+              className="modal__button modal__button-delete"
+              onClick={() => deleteProduct(modalProduct)}
+            >
+              Eliminar
+            </button>
+            <button
+              className="modal__button modal__button-cancel"
+              onClick={() => handleModal(false)}
+            >
+              Cancelar
+            </button>
+          </footer>
+        </section>
+      )}
+    </>
   );
 };
 

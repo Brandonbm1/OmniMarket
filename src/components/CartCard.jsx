@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
+import { actionsCartReducer } from "../helpers/actionsCartReducer";
+import { useCartContext } from "../context/CartContext";
 
-const CartCard = ({ product, setSubTotal, deleteProduct }) => {
-  const [quantity, setQuantity] = useState(1);
+const CartCard = ({ product, quantity, openModal }) => {
+  const { dispatch } = useCartContext();
   const [disableButton, setDisableButton] = useState(true);
 
   useEffect(() => {
@@ -12,11 +14,13 @@ const CartCard = ({ product, setSubTotal, deleteProduct }) => {
 
   const changeQuantity = (choice) => {
     if (choice === "add") {
-      setQuantity((prevState) => prevState + 1);
-      setSubTotal((prevState) => prevState + product.price);
+      dispatch({ type: actionsCartReducer.addOldProduct, product });
+      //   setQuantity((prevState) => prevState + 1);
+      //   // setSubTotal((prevState) => prevState + product.price);
     } else {
-      setQuantity((prevState) => prevState - 1);
-      setSubTotal((prevState) => prevState - product.price);
+      dispatch({ type: actionsCartReducer.substractOldProduct, product });
+      //   setQuantity((prevState) => prevState - 1);
+      //   // setSubTotal((prevState) => prevState - product.price);
     }
   };
   return (
@@ -56,7 +60,9 @@ const CartCard = ({ product, setSubTotal, deleteProduct }) => {
         <p className="CartCard__summary-price">${product.price}</p>
         <button
           className="button CartCard__summary-delete"
-          onClick={() => deleteProduct(product)}
+          onClick={() => {
+            openModal(product, true);
+          }}
         >
           <MdDeleteForever />
         </button>

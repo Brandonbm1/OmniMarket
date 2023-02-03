@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 
-const Card = ({ product }) => {
+const Card = ({ product, handle }) => {
   const handleClick = (e) => {
     e.preventDefault();
+    handle(product);
   };
   return (
     <article className="card">

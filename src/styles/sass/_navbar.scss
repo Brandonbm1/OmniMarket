@@ -24,6 +24,23 @@
         color: unset;
       }
     }
+    &:nth-child(3)::after {
+      content: attr(total-products);
+      position: absolute;
+      font-family: sans-serif;
+      font-weight: bold;
+      font-size: 16px;
+      background-color: red;
+      border-radius: 50%;
+      color: $ligth;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      right: -10%;
+      top: -20%;
+    }
   }
   &__item-home {
     &:nth-child(1) {
@@ -33,23 +50,6 @@
     &:nth-child(3) {
       position: relative;
       justify-self: end;
-      &::after {
-        content: attr(total-products);
-        position: absolute;
-        font-family: sans-serif;
-        font-weight: bold;
-        font-size: 16px;
-        background-color: red;
-        border-radius: 50%;
-        color: $ligth;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        right: -10%;
-        top: -20%;
-      }
     }
     &:nth-child(4) {
       background-color: unset;
